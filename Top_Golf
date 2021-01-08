@@ -1,0 +1,61 @@
+SELECT c.fName, c.lName, c.customerID, AVG(billTotal)
+FROM customer c, employee e, visit v
+WHERE c.customerID = v.customerID AND e.employeeID = v.employeeID
+GROUP BY c.customerID
+ORDER BY AVG(billTotal) DESC;
+
+SELECT c.fName, c.lName, c.customerID, SUM(billTotal)
+FROM customer c, employee e, visit v
+WHERE c.customerID = v.customerID AND e.employeeID = v.employeeID
+GROUP BY c.customerID
+ORDER BY SUM(billTotal) DESC;
+
+SELECT c.fName, c.lName, billTotal
+FROM customer c, visit v
+WHERE c.customerID = v.customerID
+GROUP BY c.fName
+HAVING billTotal >= '500.00';
+
+ SELECT l.city, SUM(billTotal)
+  FROM visit v, location l
+  WHERE l.locationID=v.locationID
+  GROUP BY city
+  ORDER BY SUM(billTotal) DESC;
+
+SELECT COUNT(playname) AS 'Most Played', playname
+FROM visit
+GROUP BY playname
+ORDER BY COUNT(playname) DESC;
+
+SELECT *
+FROM location
+WHERE state='TX';
+
+SELECT *
+FROM location
+WHERE location NOT IN (‘TN’, ‘SC’);
+
+Select COUNT(*) as ‘Non Intermediate games’
+From Play
+Where skilllevel NOT IN (‘Intermediate’);
+
+Select *
+From Play
+Where playname REGEXP ‘^TOP’
+AND skilllevel = ‘Beginner’;
+
+Select COUNT(playname) AS ‘Least Played’, playname
+From visit
+Group by playname
+Order By COUNT(playname) ASC;
+
+select DISTINCT title, fName, lName, locationID
+from employee 
+where title REGEXP'Manager'
+group by fName, lName
+HAVING locationID>=40000;
+
+select COUNT(skilllevel)
+from Play
+where skilllevel='Advanced'
+AND skilllevel IS NOT NULL;
