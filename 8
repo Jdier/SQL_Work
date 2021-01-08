@@ -1,0 +1,33 @@
+select montype, monname, monnum
+from monarch
+where monnum='II';
+
+Select COUNT(montype)
+from monarch
+where montype='King';
+
+select montype, premonname, premonnum, monname, monnum
+from monarch
+where monname='Victoria'
+AND monnum='I';
+
+Select e.empfname
+from emp e, emp b
+where e.empno=b.bossno;
+
+
+select e.empfname,e.empsalary
+from emp e, emp b
+where b.empno=e.bossno
+AND b.empfname='Alice';
+
+Select b.empfname, AVG(e.empsalary)
+from emp e, emp b
+where b.empno=e.bossno;
+
+select e.jobtitle, e.firstName, e.lastName, o.state
+from Employees e, Offices o
+where e.officeCode=o.officeCode 
+AND e.jobtitle='Sales Rep'
+AND o.state='California';
+
