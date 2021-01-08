@@ -1,0 +1,51 @@
+select p.productName, o.orderDate
+from Products P, Orders O, OrderDetails D
+where p.productcode=d.productCode AND o.orderNumber=d.orderNumber
+Order by o.orderdate;
+
+select p.productName, o.orderDate
+from Products p, OrderDetails d, Orders o
+where p.productCode=d.productCode AND d.orderNumber=o.orderNumber
+AND p.productName='1940 Ford Pickup Truck'
+Order by o.orderDate DESC;
+
+select p.MSRP, d.quantityOrdered, p.MSRP*d.quantityOrdered AS value
+from OrderDetails d, Products p
+where p.productCode=d.productCode	
+order by 5000>=p.MSRP*d.quantityOrdered;
+
+select p.MSRP, d.quantityOrdered, p.MSRP*d.quantityOrdered AS value, o.status
+from d.OrderDetails, p.products, Orders o
+where p.productCode=d.productCode AND d.orderNumber=o.orderNumber AND o.status='Shipped'
+order by 5000>=p.MSRP*d.quantityOrdered;
+
+select p.productName, p.MSRP, d.priceEach
+from Products p, OrderDetails d
+where p.productCode=d.productCode
+AND d.priceEach<=(MSRP*.8);
+
+select p.productName, p.MSRP, d.priceEach, o.status
+from Products p, OrderDetails d, orders o
+where p.productCode=d.productCode AND o.orderNumber=d.orderNumber
+AND d.priceEach<=(MSRP*.8) AND o.status='Shipped';
+
+select p.productName, d.priceEach, p.buyprice 
+from Products p, OrderDetails d
+where p.productCode=d.productCode 
+AND d.priceEach>=(2*p.buyprice);
+
+select DISTINCT p.productName, o.orderDate, d.quantityOrdered 
+from Products p, Orderdetails d, Orders o
+where p.productCode=d.productCode AND d.orderNumber=o.orderNumber 
+AND dayname(Monday);
+
+select p.quantityInStock, d.quantityOrdered, p.productName, o.status
+from Products p, OrderDetails d, Orders o
+where p.productCode=d.productCode AND d.ordernumber=o.orderNumber
+AND o.status='On Hold';
+
+CREATE VIEW Houserental
+AS select p.fname, p.lname
+from PropertyForRent r, PrivateOwner p
+where r.ownerNo=p.ownerNo
+AND r.type='house';
