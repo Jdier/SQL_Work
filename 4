@@ -1,0 +1,66 @@
+select DISTINCT(cartype)
+from car;
+
+from car
+group by cartype
+order by carcost;
+
+select MAX(carsell),cartype
+from car
+group by cartype;
+
+select SUM(carsell)-SUM(carcost),cartype
+from car
+group by cartype;
+
+select carcost, carid
+From car
+where carcost<(select AVG(carcost) 
+		from car);
+
+select SUM(c.carsell)-SUM(c.carcost),p.`person first`,p.`person last`
+from car c,person p
+where c.personid=p.personid
+group by p.personid;
+
+select p.`person first`,p.`person last`,COUNT(c.carid)
+from person p,car c
+where p.personid=c.personid
+AND p.`person first`='Sue' AND p.`person last`='Lim';
+
+select *
+from car c, person p 
+where c.personid=p.personid
+AND p.`person first` = 'Bruce' AND p.`person last` = 'Bush';
+
+select AVG(c.carsell), COUNT(c.carid), p.`person first`, p.`person last`
+from car c, person p
+where c.personid=p.personid
+AND p.`person first` = 'Sue' AND p.`person last` = 'Lim';
+
+
+select COUNT(c.carid),SUM(c.carsell)-SUM(c.carcost),p.`person first`,p.`person last`
+from person p,car c
+where c.personid=p.personid
+group by carid, p.`person first`,p.`person last`;
+
+use jdier3_database;
+CREATE TABLE BLOG(
+Blogid integer(15),
+BlogTitle varchar(20),
+BlogText varchar(25),
+BlogDateTime integer(15),
+BlogAuthor varchar(15),
+BlogCategory varchar(20),
+PRIMARY KEY(Blogid));
+	
+CREATE TABLE COMMENT(
+Commentid integer(15),
+CommentText varchar(30),
+CommentDateTime integer(20),
+Commenttedby varchar(25),
+PRIMARY KEY(Commentid));
+	
+
+
+
