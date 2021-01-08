@@ -1,0 +1,48 @@
+
+select customerName, salesRepEmployeeNumber
+from customers;
+
+select customerName,creditlimit
+from customers
+where creditLimit>=20000;
+
+select customerName,phone,addressLine1
+from customers
+where city in('SanFancisco');
+
+select*
+from Orders
+where status<>"shipped";
+
+select format(SUM(amount),2)
+from payments;
+
+select count(*)
+from orders
+where customerNumber='131';
+
+Select*
+from payments
+where amount >=100000<=2000
+Order by amount DESC;
+
+Select*
+from Payments 
+where amount >=100000
+Order by customernumber;
+
+select*
+from customers
+where customerName REGEXP 'Network';
+
+select*
+from Customers
+where state is NULL;
+
+select*
+from customers
+where state in ('CA');
+
+select count(*)
+from customers
+where state in('CA');
